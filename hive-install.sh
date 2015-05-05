@@ -31,6 +31,7 @@ MYSQL_NODE=$(nodeset -e @mysql)
 METASTORE_NODE=$(nodeset -e @hivemeta)
 HS2_NODE=$(nodeset -e @hs2)
 ZK_NODES=$(nodeset -S, -e @zk)
+HS2_PORT=10000 #If cluster has webmin installed, the ports will conflict so change this variable to 10001.
 
 # Set up mysql database, users, and privileges
 DATABASE=hive
@@ -121,7 +122,7 @@ clush -g hivemeta,hs2 "cat - << EOF > /opt/mapr/hive/hive-0.13/conf/hive-site.xm
 <!-- https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties#ConfigurationProperties-HiveServer2 -->
 <property>
     <name>hive.server2.thrift.port</name>
-    <value>10001</value>
+    <value>$HS2_PORT</value>
     <description>TCP port number for Hive Server to listen on, default 10000, conflict with webmin</description>
 </property>
 
