@@ -2,6 +2,7 @@
 # nestrada@maprtech.com 2015-May-1
 # Script to Install and Configure MySQL, Hive, Hive Metastore, and HiveServer2
 # hive-site.xml used below merges the configuration properties from both John Benninghoff's & Dmitry Gomerman' files
+[ $(id -u) -ne 0 ] && { echo This script must be run as root; exit 1; }
 
 # Configure clush groups
 grep '## AUTOGEN-HIVE ##' /etc/clustershell/groups >/dev/null 2>&1
@@ -232,3 +233,10 @@ sleep 5
 #stop and start Metastore and HiveServer2
 maprcli node services -name hivemeta -action start -nodes $METASTORE_NODE
 maprcli node services -name hs2 -action start -nodes $HS2_NODE
+
+hadoop fs -mkdir /user/hive
+hadoop fs -chmod 0777 /user/hive
+hadoop fs -mkdir /user/hive/warehouse
+hadoop fs -chmod 1777 /user/hive/warehouse  #accessible to all but can only delete own files
+hadoop fs -mkdir /tmp
+hadoop fs -chmod 777 /tmp
