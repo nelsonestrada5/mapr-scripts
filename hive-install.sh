@@ -32,12 +32,13 @@ MYSQL_NODE=$(nodeset -e @mysql)
 METASTORE_NODE=$(nodeset -e @hivemeta)
 HS2_NODE=$(nodeset -e @hs2)
 ZK_NODES=$(nodeset -S, -e @zk)
-HS2_PORT=10000 #If cluster has webmin installed, the ports will conflict so change this variable to 10001.
+HS2_PORT=10000 #If cluster has webmin installed, there will be a port conflict, so change this variable to 10001.
 
 # Set up mysql database, users, and privileges
 DATABASE=hive
 USER=hive
 PASSWORD=mapr
+
 clush -g mysql mysql -u root -p$ROOT_PASSWORD << EOF
 create database $DATABASE;
 create user '$USER'@'%' identified by '$PASSWORD';
