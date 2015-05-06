@@ -241,3 +241,6 @@ hadoop fs -mkdir /user/hive/warehouse
 hadoop fs -chmod 1777 /user/hive/warehouse  #accessible to all but can only delete own files
 hadoop fs -mkdir /tmp
 hadoop fs -chmod 777 /tmp
+
+echo '"To launch the HiveServer2 Beeline run "/opt/mapr/hive/hive-0.13/bin/beeline -u "jdbc:hive2://$HS2_NODE:10000/default" -n <Linux User> -p <Linux Password>"'
+
