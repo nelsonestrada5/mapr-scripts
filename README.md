@@ -2,7 +2,7 @@
 
 This git repository includes many useful scripts that can be used when installing MapR and it's ecosystem components.
 
-The ecosystem components that are included here are Hive, Pig, Drill, Oozie, and Spark.
+The ecosystem components that are included here are Hive, Pig, Drill. Oozie, Hue, Spark, and others will be added soon.
 
 To download all tar ball with everything in mapr-scripts use the following command:
 ```
