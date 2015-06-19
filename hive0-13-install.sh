@@ -1,6 +1,7 @@
 #!/bin/bash
 # nestrada@maprtech.com 2015-May-1
 # Script to Install and Configure MySQL, Hive, Hive Metastore, and HiveServer2
+# Installs Hive 0.13 if it's available in your mapr repo.
 # hive-site.xml used below merges the configuration properties from both John Benninghoff's & Dmitry Gomerman' files
 [ $(id -u) -ne 0 ] && { echo This script must be run as root; exit 1; }
 
@@ -18,8 +19,8 @@ fi
 
 # Install mysql, hive, hive metastore, and hiveserver2
 clush -g mysql "yum install -y mysql-server"
-clush -g hivemeta "yum install -y mapr-hive  mapr-hivemetastore mysql"
-clush -g hs2 "yum install -y mapr-hiveserver2 mysql"
+clush -g hivemeta "yum install -y mapr-hive-0.13.201505191731  mapr-hivemetastore-0.13.201505191731  mysql"
+clush -g hs2 "yum install -y mapr-hiveserver2-0.13.201505191731 mysql"
 
 # Initial mysql configuration
 clush -g mysql "/etc/init.d/mysqld start"
